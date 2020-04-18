@@ -1,24 +1,24 @@
-import * as React from 'react'
-import { useRef } from 'react'
-import { motion, useCycle } from 'framer-motion'
+import * as React from "react"
+import { useRef } from "react"
+import { motion, useCycle } from "framer-motion"
 // import { useDimensions } from './use-dimensions'
-import { MenuToggle } from './MenuToggle'
-import { Navigation } from './Navigation'
+import { MenuToggle } from "./MenuToggle"
+import { Navigation } from "./Navigation"
 
 const sidebar = {
   open: () => ({
     clipPath: `circle(1800px at 40px 40px)`,
     transition: {
-      type: 'spring',
+      type: "spring",
       stiffness: 20,
       restDelta: 2,
     },
   }),
   closed: {
-    clipPath: 'circle(30px at 260px 40px)',
+    clipPath: "circle(30px at 260px 40px)",
     transition: {
       delay: 0.5,
-      type: 'spring',
+      type: "spring",
       stiffness: 400,
       damping: 40,
     },
@@ -32,13 +32,16 @@ export const MotionNav = () => {
   return (
     <motion.nav
       initial={false}
-      animate={isOpen ? 'open' : 'closed'}
+      animate={isOpen ? "open" : "closed"}
       custom={height}
       ref={containerRef}
       variants={sidebar}
     >
-      <motion.div className="background" />
-      <Navigation />
+      <motion.div
+        className={isOpen ? "background openNav" : "background closedNav"}
+      >
+        <Navigation />
+      </motion.div>
       <MenuToggle toggle={() => toggleOpen()} />
     </motion.nav>
   )
