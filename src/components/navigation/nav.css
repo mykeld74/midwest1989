@@ -14,13 +14,14 @@ nav {
   bottom: 0;
   width: 300px;
   background: #000;
-  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-    &.closedNav {
-      right: -300;
-    }
-    &.openNav {
-      right: 0;
-    }
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .background.closedNav {
+    right: -300;
+  }
+  .background.openNav {
+    right: 0;
   }
 }
 
