@@ -1,8 +1,10 @@
 import React from "react"
+import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Img from "gatsby-image"
 import SEO from "../components/seo"
 import { ContentBlock } from "../components/containers"
+import GatsbyImage from "gatsby-image"
 
 const IndexPage = ({ data }) => (
   <Layout>
