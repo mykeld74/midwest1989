@@ -4,7 +4,7 @@ export const Container = Styled.div`
   width: calc(100vw - 20px);
   max-width: 960px;
   margin: 0 auto;
-  padding-top: 20px;
+  padding: 20px 0;
 `
 export const ContentBlock = Styled.div`
   width: 100%;
