@@ -29,9 +29,6 @@ const StyledInput = Styled.input`
   padding-left: 10px;
 `
 
-const HiddenInput = Styled.input`
-  display: none;
-`
 const StyledTextbox = Styled.textarea`
   width: 100%;
   max-width: 360px;
@@ -73,7 +70,8 @@ const IndexPage = ({ data }) => (
           netlify-honeypot="bot-field"
           netlify
         >
-          <HiddenInput name="bot-field" />
+          <input type="hidden" name="bot-field" />
+          <input type="hidden" name="form-name" value="contact" />
           <div>
             <Label for="name">Name:</Label>
             <StyledInput type="text" name="name" id="name" />
