@@ -71,7 +71,7 @@ const ContactPage = ({ data }) => {
   }
 
   const handleSubmit = e => {
-    const data = { "form-name": "contact", name, email, message, file }
+    const data = { "form-name": "contact", name, email, message }
 
     fetch("/", {
       method: "POST",
@@ -116,7 +116,7 @@ const ContactPage = ({ data }) => {
             <input type="hidden" name="form-name" value="contact" />
             <input type="hidden" name="bot-field" />
             <div>
-              <Label for="name">Name:</Label>
+              <Label htmlFor="name">Name:</Label>
               <StyledInput
                 type="text"
                 name="name"
@@ -126,7 +126,7 @@ const ContactPage = ({ data }) => {
               />
             </div>
             <div>
-              <Label for="email">Your Email:</Label>
+              <Label htmlFor="email">Your Email:</Label>
 
               <StyledInput
                 type="email"
@@ -137,7 +137,7 @@ const ContactPage = ({ data }) => {
               />
             </div>
             <div>
-              <Label for="message">Message:</Label>
+              <Label htmlFor="message">Message:</Label>
 
               <StyledTextbox
                 name="message"
@@ -150,6 +150,7 @@ const ContactPage = ({ data }) => {
               <StyledSubmit type="submit">Send</StyledSubmit>
             </div>
           </form>
+          <h3>{status}</h3>
         </div>
         <div className="smlCol">
           <ResponsibleParties>Tom and Teresa Boss - Owners</ResponsibleParties>
