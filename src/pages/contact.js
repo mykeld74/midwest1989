@@ -70,8 +70,8 @@ const IndexPage = ({ data }) => (
           netlify-honeypot="bot-field"
           netlify
         >
-          <input type="hidden" name="bot-field" />
           <input type="hidden" name="form-name" value="contact" />
+          <input type="hidden" name="bot-field" />
           <div>
             <Label for="name">Name:</Label>
             <StyledInput type="text" name="name" id="name" />
