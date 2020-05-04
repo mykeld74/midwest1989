@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { ContentBlock } from "../components/containers"
@@ -57,6 +57,46 @@ const StyledSubmit = Styled.button`
   }
 `
 const ContactPage = ({ data }) => {
+  const [name, setName] = useState("")
+  const [status, setStatus] = useState("")
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
+
+  const encode = data => {
+    const formData = new FormData()
+    Object.keys(data).forEach(k => {
+      formData.append(k, data[k])
+    })
+    return formData
+  }
+
+  const handleSubmit = e => {
+    const data = { "form-name": "contact", name, email, message, file }
+
+    fetch("/", {
+      method: "POST",
+      // headers: { "Content-Type": 'multipart/form-data; boundary=random' },
+      body: encode(data),
+    })
+      .then(() => setStatus("Form Submission Successful!!"))
+      .catch(error => setStatus("Form Submission Failed!"))
+
+    e.preventDefault()
+  }
+
+  const handleChange = e => {
+    const { name, value } = e.target
+    if (name === "name") {
+      return setName(value)
+    }
+    if (name === "email") {
+      return setEmail(value)
+    }
+    if (name === "message") {
+      return setMessage(value)
+    }
+  }
+
   return (
     <Layout>
       <SEO title="Home" />
@@ -70,22 +110,41 @@ const ContactPage = ({ data }) => {
             data-netlify="true"
             netlify-honeypot="bot-field"
             netlify
+            onSubmit={handleSubmit}
+            action="/thank-you/"
           >
             <input type="hidden" name="form-name" value="contact" />
             <input type="hidden" name="bot-field" />
             <div>
               <Label for="name">Name:</Label>
-              <StyledInput type="text" name="name" id="name" />
+              <StyledInput
+                type="text"
+                name="name"
+                id="name"
+                value={name}
+                onChange={handleChange}
+              />
             </div>
             <div>
               <Label for="email">Your Email:</Label>
 
-              <StyledInput type="email" name="email" id="email" />
+              <StyledInput
+                type="email"
+                name="email"
+                id="email"
+                value={email}
+                onChange={handleChange}
+              />
             </div>
             <div>
               <Label for="message">Message:</Label>
 
-              <StyledTextbox name="message" id="message"></StyledTextbox>
+              <StyledTextbox
+                name="message"
+                id="message"
+                value={message}
+                onChange={handleChange}
+              ></StyledTextbox>
             </div>
             <div>
               <StyledSubmit type="submit">Send</StyledSubmit>
