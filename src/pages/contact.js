@@ -58,18 +58,17 @@ const StyledSubmit = Styled.button`
 `
 const IndexPage = ({ data }) => (
   <Layout>
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <textarea name="message"></textarea>
+    </form>
     <SEO title="Home" />
     <h1>Contact Us</h1>
     <hr />
     <ContentBlock>
       <div className="lrgCol">
-        <form
-          name="contact"
-          method="POST"
-          data-netlify="true"
-          // netlify-honeypot="bot-field"
-          // netlify
-        >
+        <form name="contact" method="POST" netlify-honeypot="bot-field" netlify>
           <input type="hidden" name="form-name" value="contact" />
           <input type="hidden" name="bot-field" />
           <div>
