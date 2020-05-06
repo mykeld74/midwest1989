@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { ContentBlock } from "../components/containers"
@@ -56,45 +56,113 @@ const StyledSubmit = Styled.button`
     border: 2px solid #ff5a00;
   }
 `
-const IndexPage = ({ data }) => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Contact Us</h1>
-    <hr />
-    <ContentBlock>
-      <div className="lrgCol">
-        <form name="contact" method="POST" netlify-honeypot="bot-field" netlify>
-          <input type="hidden" name="form-name" value="contact" />
-          <input type="hidden" name="bot-field" />
-          <div>
-            <Label htmlFor="name">Name:</Label>
-            <StyledInput type="text" name="name" id="name" />
-          </div>
-          <div>
-            <Label htmlFor="email">Your Email:</Label>
+const ContactPage = ({ data }) => {
+  const [name, setName] = useState("")
+  const [status, setStatus] = useState("")
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
 
-            <StyledInput type="email" name="email" id="email" />
-          </div>
-          <div>
-            <Label htmlFor="message">Message:</Label>
+  const encode = data => {
+    const formData = new FormData()
+    Object.keys(data).forEach(k => {
+      formData.append(k, data[k])
+    })
+    return formData
+  }
 
-            <StyledTextbox name="message" id="message"></StyledTextbox>
-          </div>
-          <div>
-            <StyledSubmit type="submit">Send</StyledSubmit>
-          </div>
-        </form>
-      </div>
-      <div className="smlCol">
-        <ResponsibleParties>Tom and Teresa Boss - Owners</ResponsibleParties>
-        <ResponsibleParties>Misty Boss- Marketing</ResponsibleParties>
-        <ResponsibleParties>Jake Boss- Consultant</ResponsibleParties>
-        <ResponsibleParties>Steven Jacinto- Supervisor</ResponsibleParties>
+  const handleSubmit = e => {
+    const data = { "form-name": "contact", name, email, message }
+    console.log(data)
 
-        <ContactInfo>Call Us at 630-759-5033</ContactInfo>
-      </div>
-    </ContentBlock>
-  </Layout>
-)
+    fetch("/", {
+      method: "POST",
+      // headers: { "Content-Type": 'multipart/form-data; boundary=random' },
+      body: encode(data),
+    })
+      .then(() => setStatus("Form Submission Successful!!"))
+      .catch(error => setStatus("Form Submission Failed!"))
 
-export default IndexPage
+    e.preventDefault()
+  }
+
+  const handleChange = e => {
+    const { name, value } = e.target
+    if (name === "name") {
+      return setName(value)
+    }
+    if (name === "email") {
+      return setEmail(value)
+    }
+    if (name === "message") {
+      return setMessage(value)
+    }
+  }
+
+  return (
+    <Layout>
+      <SEO title="Home" />
+      <h1>Contact Us</h1>
+      <hr />
+      <ContentBlock>
+        <div className="lrgCol">
+          <form
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            netlify
+            onSubmit={handleSubmit}
+          >
+            <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="bot-field" />
+            <div>
+              <Label htmlFor="name">Name:</Label>
+              <StyledInput
+                type="text"
+                name="name"
+                id="name"
+                value={name}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <Label htmlFor="email">Your Email:</Label>
+
+              <StyledInput
+                type="email"
+                name="email"
+                id="email"
+                value={email}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <Label htmlFor="message">Message:</Label>
+
+              <StyledTextbox
+                name="message"
+                id="message"
+                value={message}
+                onChange={handleChange}
+              ></StyledTextbox>
+            </div>
+            <div>
+              <StyledSubmit type="submit">Send</StyledSubmit>
+            </div>
+          </form>
+          <h3>{status}</h3>
+        </div>
+        <div className="smlCol">
+          <ResponsibleParties>Tom and Teresa Boss - Owners</ResponsibleParties>
+          <ResponsibleParties>Misty Boss- Marketing</ResponsibleParties>
+          <ResponsibleParties>Jake Boss- Consultant</ResponsibleParties>
+          <ResponsibleParties>Steven Jacinto- Supervisor</ResponsibleParties>
+
+          <ContactInfo>Call Us at 630-759-5033</ContactInfo>
+        </div>
+      </ContentBlock>
+    </Layout>
+  )
+}
+
+export default ContactPage
