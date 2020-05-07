@@ -106,36 +106,44 @@ const ContactPage = ({ data }) => {
       <ContentBlock>
         <div className="lrgCol">
           <form
-            name="contact"
+            name="ContactUs"
             method="POST"
             data-netlify="true"
             netlify-honeypot="bot-field"
             netlify
             onSubmit={handleSubmit}
           >
-            <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="form-name" value="ContactUs" />
             <input type="hidden" name="bot-field" />
             <div>
-              <input
+              <Label htmlFor="name">Name:</Label>
+              <StyledInput
                 type="text"
                 name="name"
-                placeholder="Name*"
-                required
+                id="name"
+                value={name}
                 onChange={handleChange}
               />
-              <input
+            </div>
+            <div>
+              <Label htmlFor="email">Your Email:</Label>
+              <StyledInput
                 type="email"
                 name="email"
-                placeholder="Email*"
-                required
+                id="email"
+                value={email}
                 onChange={handleChange}
               />
-              <textarea
-                name="comments"
-                placeholder="Message*"
-                required
+            </div>
+            <div>
+              <Label htmlFor="message">Message:</Label>
+
+              <StyledTextbox
+                name="message"
+                id="message"
+                value={message}
                 onChange={handleChange}
-              ></textarea>
+              ></StyledTextbox>
             </div>
             <div>
               <StyledSubmit type="submit">Send</StyledSubmit>
