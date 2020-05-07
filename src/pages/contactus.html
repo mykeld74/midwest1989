@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>just trying to get the form to show.</title>
+  </head>
+  <body>
+    <form
+      name="ContactUs"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+    >
+      <input type="hidden" name="form-name" value="ContactUs" /><input
+        type="hidden"
+        name="bot-field"
+      />
+      <div>
+        <p for="name">Name:</p>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          class="sc-fzpans cKJzHK"
+          value=""
+        />
+      </div>
+      <div>
+        <p for="email">Your Email:</p>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          class="sc-fzpans cKJzHK"
+          value=""
+        />
+      </div>
+      <div>
+        <p for="message">Message:</p>
+        <textarea
+          name="message"
+          id="message"
+          class="sc-fzplWN hRBsWH"
+        ></textarea>
+      </div>
+      <div><button type="submit" class="sc-fznyAO CWQMf">Send</button></div>
+    </form>
+  </body>
+</html>

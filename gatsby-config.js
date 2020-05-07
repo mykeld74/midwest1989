@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Midwest Maintenance and Management`,
     description: `For 23 years Midwest Maintenance and Management Inc. has provided high quality, dependable services to ensure that your properties present in a manner that reflects your company.`,
-    author: `@gatsbyjs`,
+    author: `Mike Daugherty`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
