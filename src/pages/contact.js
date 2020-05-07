@@ -116,35 +116,26 @@ const ContactPage = ({ data }) => {
             <input type="hidden" name="form-name" value="contact" />
             <input type="hidden" name="bot-field" />
             <div>
-              <Label htmlFor="name">Name:</Label>
-              <StyledInput
+              <input
                 type="text"
                 name="name"
-                id="name"
-                value={name}
+                placeholder="Name*"
+                required
                 onChange={handleChange}
               />
-            </div>
-            <div>
-              <Label htmlFor="email">Your Email:</Label>
-
-              <StyledInput
+              <input
                 type="email"
                 name="email"
-                id="email"
-                value={email}
+                placeholder="Email*"
+                required
                 onChange={handleChange}
               />
-            </div>
-            <div>
-              <Label htmlFor="message">Message:</Label>
-
-              <StyledTextbox
-                name="message"
-                id="message"
-                value={message}
+              <textarea
+                name="comments"
+                placeholder="Message*"
+                required
                 onChange={handleChange}
-              ></StyledTextbox>
+              ></textarea>
             </div>
             <div>
               <StyledSubmit type="submit">Send</StyledSubmit>
