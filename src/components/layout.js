@@ -44,11 +44,7 @@ const Layout = ({ children }) => {
       )}
       {componentMounted && (
         <div className="content">
-          <ThemeProvider theme={themeMode}>
-            <GlobalStyles />
-            <Toggle theme={theme} toggleTheme={toggleTheme} />
-            <Container>{children}</Container>
-          </ThemeProvider>
+          <Container>{children}</Container>
         </div>
       )}
       <Footer>P.O. Box 1726 | Bolingbrook | IL | 60440 | 630-759-5033</Footer>
