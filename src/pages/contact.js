@@ -71,7 +71,7 @@ const ContactPage = ({ data }) => {
   }
 
   const handleSubmit = e => {
-    const data = { "form-name": "contact", name, email, message }
+    const data = { "form-name": "ContactUs", name, email, message }
     console.log(data)
 
     fetch("/", {
