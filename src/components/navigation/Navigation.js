@@ -6,10 +6,14 @@ import Styled from "styled-components"
 
 const variants = {
   open: {
+    height: "100vh",
+    top: "120px",
     transition: { staggerChildren: 0.07, delayChildren: 0.2 },
   },
   closed: {
-    transition: { staggerChildren: 0.05, staggerDirection: -1 },
+    height: 0,
+    top: "-100px",
+    transition: { staggerChildren: 0.03, staggerDirection: -1 },
   },
 }
 

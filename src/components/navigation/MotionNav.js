@@ -28,20 +28,17 @@ const sidebar = {
 export const MotionNav = () => {
   const [isOpen, toggleOpen] = useCycle(false, true)
   const containerRef = useRef(null)
-  const { height } = 1000
+  // const { height } = 1000
   return (
     <motion.nav
       initial={false}
       animate={isOpen ? "open" : "closed"}
-      custom={height}
+      // custom={height}
       ref={containerRef}
       variants={sidebar}
     >
-      <motion.div
-        className={isOpen ? "background openNav" : "background closedNav"}
-      >
-        <Navigation />
-      </motion.div>
+      <Navigation />
+
       <MenuToggle toggle={() => toggleOpen()} />
     </motion.nav>
   )
